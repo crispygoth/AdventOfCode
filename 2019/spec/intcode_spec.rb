@@ -50,7 +50,7 @@ describe Intcode do
 				unless test[:final_ram].nil? then
 					expect(ic.ram).to eq(test[:final_ram])
 				end
-				expect(ic.output).to eq(test[:output])
+				expect(ic.output.to_a).to eq(test[:output])
 			end
 		end
 	end

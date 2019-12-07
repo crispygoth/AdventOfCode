@@ -2,13 +2,19 @@
 # https://adventofcode.com/2019/day/2
 
 class Intcode
-	attr_reader :ram, :output
+	attr_reader :ram
+	attr_accessor :input, :output
 
 	def initialize(program, input = [])
-		@ram = program
+		@ram = program.clone
 		@pc = 0
-		@input = input
-		@output = []
+		# input can be an actual Queue object, if so use it directly. Otherwise it should be something array-like.
+		if input.kind_of?(Queue) then
+			@input = input
+		else
+			@input = input.inject(Queue.new, :push)
+		end
+		@output = Queue.new
 	end
 
 	def run
@@ -24,7 +30,7 @@ class Intcode
 		operations << Operation.new(0, 1) { @input.shift }
 
 	        # operation 4 outputs the value of its only parameter
-		operations << Operation.new(1, 0) { |val| @output << val }
+		operations << Operation.new(1, 0) { |val| @output << val; nil }
 
 		# operation 5 is jump-if-true: if the first parameter is non-zero, it sets the instruction pointer to the value from the second parameter. Otherwise, it does nothing.
 		operations << Operation.new(2, 0) { |test, dest| @pc = dest if test != 0 }
@@ -91,5 +97,14 @@ class Operation
 		@in_params = in_params
 		@out_params = out_params
 		@proc = block
+	end
+end
+
+class Queue
+	def to_a
+		size.times.map { self.pop }
+	end
+	def to_s
+		to_a.to_s
 	end
 end
