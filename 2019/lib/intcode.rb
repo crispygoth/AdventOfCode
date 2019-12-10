@@ -8,6 +8,7 @@ class Intcode
 	def initialize(program, input = [])
 		@ram = program.clone
 		@pc = 0
+		@relative_base = 0
 		# input can be an actual Queue object, if so use it directly. Otherwise it should be something array-like.
 		if input.kind_of?(Queue) then
 			@input = input
@@ -44,6 +45,9 @@ class Intcode
 		# operation 8 is equals: if the first parameter is equal to the second parameter, it stores 1 in the position given by the third parameter. Otherwise, it stores 0.
 		operations << Operation.new(2, 1) { |a, b| if a == b then 1 else 0 end }
 
+		# operation 9 changes the relative base
+		operations << Operation.new(1, 0) { |base| @relative_base += base }
+
 		# operation 99: halt
 		operations[99] = Operation.new(0, 0) { return }
 
@@ -53,12 +57,15 @@ class Intcode
 			operation = operations[opcode]
 			@pc += 1
 
-			in_param_values = (1..operation.in_params).collect do
+			param_location = proc do |allow_immediate|
 				case param_modes % 10
 				when 0		# position mode: contents of ram points to memory location
-					val = @ram[@ram[@pc]]
-				when 1		# immediate mode: contents of ram is the param
 					val = @ram[@pc]
+				when 1		# immediate mode: contents of ram is the param
+					raise 'invalid input param mode %i' % (param_modes % 10) unless allow_immediate
+					val = @pc
+				when 2
+					val = @ram[@pc] + @relative_base
 				else
 					raise 'invalid input param mode %i' % (param_modes % 10)
 				end
@@ -66,17 +73,9 @@ class Intcode
 				@pc += 1
 				val
 			end
-			out_positions = (1..operation.out_params).collect do
-				case param_modes % 10
-				when 0		# position mode: contents of ram are the memory location to write to
-					pos = @ram[@pc]
-				else
-					raise 'invalid output param mode %i' % (param_modes % 10)
-				end
-				param_modes /= 10
-				@pc += 1
-				pos
-			end
+
+			in_param_values = (1..operation.in_params).map(&param_location.curry(2)[true]).map { |loc| @ram.fetch(loc, 0) }
+			out_positions = (1..operation.out_params).map(&param_location.curry(2)[false])
 
 			op_output = Array(operation.proc.call(*in_param_values))
 			if op_output.length < out_positions.length then
