@@ -42,6 +42,12 @@ describe Intcode do
 			:program => [3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99],
 			:input => [14], :output => [1001], :final_ram => nil,
 		},
+		# takes no input and provides a copy of itself on output
+		{ :program => [109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99], :input => [], :output => [109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99] },
+		# should output a 16-digit number
+		{ :program => [1102,34915192,34915192,7,4,7,99,0], :input => [], :output => [1219070632396864]},
+		# should output the large number in the middle
+		{ :program => [104,1125899906842624,99], :input => [], :output => [1125899906842624] },
 	].each do |test|
 		describe "given #{test[:program]} and input #{test[:input]}" do
 			it "finishes with ram state #{test[:final_ram]} and output #{test[:output]}" do
