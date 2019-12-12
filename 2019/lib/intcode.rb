@@ -18,6 +18,10 @@ class Intcode
 		@output = Queue.new
 	end
 
+	def self.load_from_file(filename, input = [])
+		self.new(File.new(filename).gets.split(',').map(&:to_i), input)
+	end
+
 	def run
 		operations = [nil] # no operation zero
 
