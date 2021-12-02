@@ -14,7 +14,7 @@ func main() {
 	log.SetPrefix("day1: ")
 	log.SetFlags(0)
 
-	result, err := day1.Step1("input.txt")
+	result, err := day1.Step1("input1.txt")
 	// If an error was returned, print it to the console and
 	// exit the program.
 	if err != nil {
@@ -25,7 +25,7 @@ func main() {
 	// to the console.
 	fmt.Println(result)
 
-	result, err = day1.Step2("input.txt")
+	result, err = day1.Step2("input1.txt")
 	// If an error was returned, print it to the console and
 	// exit the program.
 	if err != nil {
