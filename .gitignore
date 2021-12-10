@@ -1,0 +1,11 @@
+/2021/.yarn/*
+!/2021/.yarn/patches
+!/2021/.yarn/plugins
+!/2021/.yarn/releases
+!/2021/.yarn/sdks
+
+# Swap the comments on the following lines if you don't wish to use zero-installs
+# Documentation here: https://yarnpkg.com/features/zero-installs
+#!/.yarn/cache
+/2021/.pnp.*
+/2021/**/*.js
