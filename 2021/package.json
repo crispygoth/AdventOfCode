@@ -21,6 +21,7 @@
   "scripts": {
     "day4": "ts-node runday4.ts",
     "day5": "ts-node runday5.ts",
+    "day6": "ts-node runday6.ts",
     "test": "ts-mocha test/**/*.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "build": "tsc -p tsconfig.json",
