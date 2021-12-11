@@ -227,6 +227,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/stats-lite@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@types/stats-lite@npm:2.2.0"
+  checksum: 816b8ce8c6af7b5bd35359c8428f5667e9761742a60ef1b73fb86776925e10ac29e7621002f5c7e1c7183acfccd3420400b882ee6b8ab8d4067d06919286d990
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 20.2.1
   resolution: "@types/yargs-parser@npm:20.2.1"
@@ -390,11 +397,13 @@ __metadata:
     "@types/expect": ^24.3.0
     "@types/mocha": ^9.0.0
     "@types/node": ^16.11.12
+    "@types/stats-lite": ^2.2.0
     "@types/yargs": ^17.0.7
     chai: ^4.3.4
     eslint: ^8.4.1
     fs: ^0.0.1-security
     mocha: ^9.1.3
+    stats-lite: ^2.2.0
     ts-mocha: ^8.0.0
     ts-node: ^10.4.0
     typescript: ^4.5.3
@@ -1427,6 +1436,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isnumber@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "isnumber@npm:1.0.0"
+  checksum: 245dba1670bc5b0e0e0788ca0231f05eaa2425586b22d5acc44add14ac8f025b12e1a346b3a069e0c194cd93c0c2bfe55820dba5582500a3f45f4212a667b7f3
+  languageName: node
+  linkType: hard
+
 "jest-diff@npm:^27.4.2":
   version: 27.4.2
   resolution: "jest-diff@npm:27.4.2"
@@ -2189,6 +2205,15 @@ __metadata:
   dependencies:
     escape-string-regexp: ^2.0.0
   checksum: 76b69da0f5b48a34a0f93c98ee2a96544d2c4ca2557f7eef5ddb961d3bdc33870b46f498a84a7c4f4ffb781df639840e7ebf6639164ed4da5e1aeb659615b9c7
+  languageName: node
+  linkType: hard
+
+"stats-lite@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "stats-lite@npm:2.2.0"
+  dependencies:
+    isnumber: ~1.0.0
+  checksum: ea153c195c48692b00bfbb04fd8760d30c161edf62be31dc3475554da1f22f362461fa953ca5465c6e7977a1b927bf8cb4b1df8230c43f6a8f48fe2c125c98eb
   languageName: node
   linkType: hard
 
