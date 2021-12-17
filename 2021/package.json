@@ -32,6 +32,7 @@
     "day12": "ts-node runday12.ts",
     "day13": "ts-node runday13.ts",
     "day14": "ts-node runday14.ts",
+    "day15": "ts-node runday15.ts",
     "test": "ts-mocha test/**/*.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "build": "tsc -p tsconfig.json",
