@@ -17,6 +17,6 @@ describe(("Day 21"), () => {
             expect(day.step2())
                 .to
                 .equal(444356092776315)
-        })
+        }).timeout(15000)
     })
 });
