@@ -5,7 +5,7 @@ from importlib.util import find_spec
 app = typer.Typer()
 app.name = 'aoc'
 
-for day in range(1,26):
+for day in range(1, 26):
     module_name = f'day{day:d}'
     if not find_spec(module_name):
         break
