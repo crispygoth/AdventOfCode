@@ -1,6 +1,7 @@
 name: Typescript
 
-on: [push]
+# disabling previous years
+#on: [push]
 
 jobs:
   build:

@@ -1,6 +1,7 @@
 name: Ruby
 
-on: [push]
+# disabling previous years
+#on: [push]
 
 jobs:
   build:
