@@ -9,3 +9,6 @@
 #!/.yarn/cache
 /2021/.pnp.*
 /2021/**/*.js
+
+.venv
+__pycache__
