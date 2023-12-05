@@ -25,7 +25,11 @@ def step_impl(context, command, subcommand):  # noqa:F811
 
 @then('the command exits successfully')
 def step_impl(context):  # noqa:F811
-    assert_that(context.cli_result.exit_code, equal_to(0))
+    assert_that(
+        context.cli_result.exit_code,
+        equal_to(0),
+        context.cli_result.output
+        )
 
 
 @then('the result is {result}')
