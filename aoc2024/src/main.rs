@@ -5,6 +5,7 @@ use std::io::Read;
 pub mod day1;
 pub mod day2;
 pub mod day3;
+pub mod day4;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -22,6 +23,8 @@ fn main() {
         ("day2", "part2") => { result = day2::part2(&input); },
         ("day3", "part1") => { result = day3::part1(&input); },
         ("day3", "part2") => { result = day3::part2(&input); },
+        ("day4", "part1") => { result = day4::part1(&input); },
+        ("day4", "part2") => { result = day4::part2(&input); },
         _ => panic!("unknown args")
     }
 
