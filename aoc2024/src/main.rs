@@ -1,11 +1,13 @@
 use std::env;
 use std::fs::File;
 use std::io::Read;
+use std::time::Instant;
 
 pub mod day1;
 pub mod day2;
 pub mod day3;
 pub mod day4;
+pub mod day5;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -16,6 +18,8 @@ fn main() {
 
     let result: u32;
 
+    let start = Instant::now();
+
     match (&args[1][..], &args[2][..]) {
         ("day1", "part1") => { result = day1::part1(&input); },
         ("day1", "part2") => { result = day1::part2(&input); },
@@ -25,8 +29,12 @@ fn main() {
         ("day3", "part2") => { result = day3::part2(&input); },
         ("day4", "part1") => { result = day4::part1(&input); },
         ("day4", "part2") => { result = day4::part2(&input); },
+        ("day5", "part1") => { result = day5::part1(&input); },
+        ("day5", "part2") => { result = day5::part2(&input); },
         _ => panic!("unknown args")
     }
+    let duration = start.elapsed();
 
-    println!("{}", result);
+    println!("result: {}", result);
+    println!("took {:?}", duration);
 }
