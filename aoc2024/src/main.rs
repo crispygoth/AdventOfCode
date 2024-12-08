@@ -3,11 +3,13 @@ use std::fs::File;
 use std::io::Read;
 use std::time::Instant;
 
+pub mod helpers;
 pub mod day1;
 pub mod day2;
 pub mod day3;
 pub mod day4;
 pub mod day5;
+pub mod day6;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -31,6 +33,8 @@ fn main() {
         ("day4", "part2") => { result = day4::part2(&input); },
         ("day5", "part1") => { result = day5::part1(&input); },
         ("day5", "part2") => { result = day5::part2(&input); },
+        ("day6", "part1") => { result = day6::part1(&input); },
+        ("day6", "part2") => { result = day6::part2(&input); },
         _ => panic!("unknown args")
     }
     let duration = start.elapsed();

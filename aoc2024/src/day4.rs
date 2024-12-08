@@ -1,9 +1,9 @@
-use ndarray::Array2;
+use crate::helpers;
 
 pub fn part1(input: &str) -> u32 {
     let mut result: u32 = 0;
 
-    let grid = parse_input(input);
+    let grid = helpers::parse_char_map(input);
 
     let filter_fn =
         |a: Vec<&char>| -> bool { a == [&'X', &'M', &'A', &'S'] || a == [&'S', &'A', &'M', &'X'] };
@@ -39,7 +39,7 @@ pub fn part1(input: &str) -> u32 {
 
 pub fn part2(input: &str) -> u32 {
     let mut result = 0;
-    let grid = parse_input(input);
+    let grid = helpers::parse_char_map(input);
 
     let correct = [
         vec![&'M',&'A',&'S'],
@@ -56,13 +56,6 @@ pub fn part2(input: &str) -> u32 {
         .count() as u32;
 
     return result;
-}
-
-fn parse_input(input: &str) -> Array2<char> {
-    return Array2::from_shape_vec(
-        (input.lines().count(), input.lines().nth(0).unwrap().len()),
-        input.chars().filter(|c| !c.is_whitespace()).collect(),
-    ).expect("unable to parse input");
 }
 
 #[cfg(test)]
