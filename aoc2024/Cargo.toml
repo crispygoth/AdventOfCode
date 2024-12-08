@@ -9,3 +9,4 @@ ndarray = "0.16.1"
 itertools = "0.13.0"
 rayon = "1.10.0"
 indicatif = {version = "0.17.9", features = ["rayon"]}
+pathfinding = "4.11.0"
