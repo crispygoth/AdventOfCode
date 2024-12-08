@@ -11,6 +11,7 @@ pub mod day4;
 pub mod day5;
 pub mod day6;
 pub mod day7;
+pub mod day8;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -38,6 +39,8 @@ fn main() {
         ("day6", "part2") => { result = day6::part2(&input).to_string(); },
         ("day7", "part1") => { result = day7::part1(&input); },
         ("day7", "part2") => { result = day7::part2(&input); },
+        ("day8", "part1") => { result = day8::part1(&input); },
+        ("day8", "part2") => { result = day8::part2(&input); },
         _ => panic!("unknown args")
     }
     let duration = start.elapsed();
