@@ -1,13 +1,13 @@
-pub fn part1(input: &str) -> u32 {
+pub fn part1(input: &str) -> String {
     let mut result = 0;
 
-    return result;
+    return result.to_string();
 }
 
-pub fn part2(input: &str) -> u32 {
+pub fn part2(input: &str) -> String {
     let mut result = 0;
 
-    return result;
+    return result.to_string();
 }
 
 #[cfg(test)]
@@ -20,12 +20,12 @@ mod tests {
     #[test]
     fn part1_test_input() {
         let result = part1(TEST_INPUT);
-        assert_eq!(0, result);
+        assert_eq!("", result);
     }
 
     #[test]
     fn part2_test_input() {
-        let result: u32 = part2(TEST_INPUT);
-        assert_eq!(0, result);
+        let result = part2(TEST_INPUT);
+        assert_eq!("", result);
     }
 }
