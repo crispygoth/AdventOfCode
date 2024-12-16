@@ -66,10 +66,4 @@ mod tests {
         let result = part1(TEST_INPUT);
         assert_eq!("55312", result);
     }
-
-    #[test]
-    fn part2_test_input() {
-        let result = part2(TEST_INPUT);
-        assert_eq!("", result);
-    }
 }

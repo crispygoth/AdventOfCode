@@ -17,12 +17,14 @@ mod tests {
     const TEST_INPUT: &str = "\
 ";
 
+    #[ignore]
     #[test]
     fn part1_test_input() {
         let result = part1(TEST_INPUT);
         assert_eq!("", result);
     }
 
+    #[ignore]
     #[test]
     fn part2_test_input() {
         let result = part2(TEST_INPUT);
