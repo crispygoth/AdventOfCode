@@ -1,3 +1,4 @@
+use std::ops::Add;
 use ndarray::Array2;
 
 pub fn parse_char_map(input: &str) -> Array2<char> {
@@ -9,8 +10,8 @@ pub fn parse_char_map(input: &str) -> Array2<char> {
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct Point<T> {
-    x: T,
-    y: T,
+    pub x: T,
+    pub y: T,
 }
 
 impl<T> Point<T>
@@ -40,6 +41,18 @@ where
         }
     }
 }
+
+impl<T: Add<Output = T>> Add for Point<T> {
+    type Output = Point<T>;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        Point { 
+            x: self.x + rhs.x,
+            y: self.y + rhs.y,
+        }
+    }
+}
+
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum Direction {

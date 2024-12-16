@@ -1,13 +1,9 @@
 pub fn part1(input: &str) -> String {
-    let mut result = 0;
-
-    return result.to_string();
+    todo!()
 }
 
 pub fn part2(input: &str) -> String {
-    let mut result = 0;
-
-    return result.to_string();
+    todo!()
 }
 
 #[cfg(test)]
