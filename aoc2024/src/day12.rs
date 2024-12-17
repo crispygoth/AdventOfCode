@@ -1,7 +1,6 @@
-use itertools::Itertools;
+use crate::helpers::parse_char_map;
 use ndarray::Array2;
 use pathfinding::prelude::dfs_reach;
-use crate::helpers::{parse_char_map, Direction, Point};
 
 #[derive(Hash, Eq, PartialEq, Debug)]
 struct Region<'a> {

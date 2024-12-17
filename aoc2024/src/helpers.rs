@@ -2,10 +2,10 @@ use std::ops::Add;
 use ndarray::Array2;
 
 pub fn parse_char_map(input: &str) -> Array2<char> {
-    return Array2::from_shape_vec(
+    Array2::from_shape_vec(
         (input.lines().count(), input.lines().nth(0).unwrap().len()),
         input.chars().filter(|c| !c.is_whitespace()).collect(),
-    ).expect("unable to parse input");
+    ).expect("unable to parse input")
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
@@ -63,6 +63,7 @@ pub enum Direction {
 }
 
 impl Direction {
+    #[allow(dead_code)]
     pub(crate) fn turn_left(&self) -> Self {
         match self {
             Direction::Up => Direction::Left,
