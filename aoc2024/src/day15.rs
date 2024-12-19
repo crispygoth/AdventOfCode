@@ -1,20 +1,10 @@
-use itertools::Itertools;
 use ndarray::{Array2, Ix};
-use crate::helpers::{parse_char_map, Direction, Point};
+use crate::helpers::{parse_char_map, find_char_in_map, Direction, Point};
 
-fn find_robot(map: &Array2<char>) -> Point<Ix> {
-    Point::from_tuple(
-        map
-            .indexed_iter()
-            .find(|&(_, &v)| v == '@')
-            .map(|(idx, _)| idx)
-            .expect("robot position not found")
-    )
-}
 
 pub fn part1(input: &str) -> String {
     let (mut map, moves) = parse_input(input);
-    let mut robot_pos = find_robot(&map);
+    let mut robot_pos = find_char_in_map(&map, '@');
 
     for m in moves {
         robot_pos = try_move(&mut map, robot_pos, m).unwrap_or(robot_pos);
@@ -45,13 +35,6 @@ fn try_move(map: &mut Array2<char>, from_pos: Point<Ix>, m: Direction) -> Option
     }
 }
 
-fn print_map(map: &Array2<char>) {
-    println!("0         1         2");
-    println!("   012345678901234567890123456789");
-    for (i, r) in map.rows().into_iter().enumerate() {
-        println!("{:2} {}", i, r.iter().join(""));
-    }
-}
 pub fn part2(input: &str) -> String {
     let input = input
         .replace(".","..")
@@ -60,7 +43,7 @@ pub fn part2(input: &str) -> String {
         .replace("@","@.");
 
     let (mut map, moves) = parse_input(input.as_str());
-    let mut robot_pos = find_robot(&map);
+    let mut robot_pos = find_char_in_map(&map, '@');
 
     for m in moves {
         //print_map(&map);

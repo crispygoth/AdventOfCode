@@ -1,11 +1,30 @@
 use std::ops::Add;
-use ndarray::Array2;
+use itertools::Itertools;
+use ndarray::{Array2, Ix};
 
 pub fn parse_char_map(input: &str) -> Array2<char> {
     Array2::from_shape_vec(
         (input.lines().count(), input.lines().nth(0).unwrap().len()),
         input.chars().filter(|c| !c.is_whitespace()).collect(),
     ).expect("unable to parse input")
+}
+
+#[allow(dead_code)]
+pub(crate) fn print_char_map(map: &Array2<char>) {
+    println!("   0         1         2");
+    println!("   012345678901234567890123456789");
+    for (i, r) in map.rows().into_iter().enumerate() {
+        println!("{:2} {}", i, r.iter().join(""));
+    }
+}
+pub(crate) fn find_char_in_map(map: &Array2<char>, c: char) -> Point<Ix> {
+    Point::from_tuple(
+        map
+            .indexed_iter()
+            .find(|&(_, &v)| v == c)
+            .map(|(idx, _)| idx)
+            .expect("character position not found")
+    )
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
