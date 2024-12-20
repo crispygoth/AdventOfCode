@@ -1,3 +1,4 @@
+use std::fmt::Display;
 use std::ops::Add;
 use itertools::Itertools;
 use ndarray::{Array2, Ix};
@@ -36,7 +37,7 @@ pub struct Point<T> {
 impl<T> Point<T>
 where
     isize: TryFrom<T>,
-    T: Clone,
+    T: Clone + std::str::FromStr,
     T: TryFrom<isize>,
 {
     pub(crate) fn to_tuple(self) -> (T, T) {
@@ -46,6 +47,13 @@ where
         Self {
             x: from.0,
             y: from.1,
+        }
+    }
+    pub(crate) fn from_str(from: &str) -> Self {
+        let (x,y) = from.split_once(",").unwrap();
+        Point {
+            x: x.parse().ok().unwrap(),
+            y: y.parse().ok().unwrap()
         }
     }
     pub(crate) fn move_direction(&self, dir: &Direction) -> Option<Self> {
@@ -69,6 +77,12 @@ impl<T: Add<Output = T>> Add for Point<T> {
             x: self.x + rhs.x,
             y: self.y + rhs.y,
         }
+    }
+}
+
+impl<T: ToString> Display for Point<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", [self.x.to_string(), self.y.to_string()].iter().join(","))
     }
 }
 
@@ -108,5 +122,8 @@ impl Direction {
             Direction::Down => (1, 0),
             Direction::Left => (0, -1),
         }
+    }
+    pub fn iter() -> impl Iterator<Item = Direction> {
+        [Direction::Up, Direction::Right, Direction::Down, Direction::Left].iter().copied()
     }
 }
