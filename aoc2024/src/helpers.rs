@@ -1,7 +1,7 @@
-use std::fmt::Display;
-use std::ops::Add;
 use itertools::Itertools;
 use ndarray::{Array2, Ix};
+use std::fmt::Display;
+use std::ops::Add;
 
 pub fn parse_char_map(input: &str) -> Array2<char> {
     Array2::from_shape_vec(
@@ -66,6 +66,10 @@ where
             (Ok(x), Ok(y)) => Some(Self { x, y }),
             _ => None,
         }
+    }
+    
+    pub(crate) fn neighbours(&self) -> Vec<Self> {
+        Direction::iter().filter_map(|d| self.move_direction(&d)).collect()
     }
 }
 
